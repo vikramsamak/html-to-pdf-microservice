@@ -26,7 +26,7 @@ app.post('/generate-pdf', async (req, res) => {
 
   try {
     const browser = await launch({
-      headless: 'new', 
+      headless: 'new',
       args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
@@ -48,12 +48,12 @@ app.post('/generate-pdf', async (req, res) => {
 
     const pdfBase64 = pdfBuffer.toString('base64');
 
-    await browser.close();
-
     const pdfData = {
       dataUri: `data:application/pdf;base64,${pdfBase64}`
     }
 
+    await browser.close();
+    
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdfData);
   } catch (error) {
