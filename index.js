@@ -1,6 +1,10 @@
 import express, { json } from 'express';
 import { launch } from 'puppeteer';
 import cors from 'cors';
+import { config } from 'dotenv';
+
+config();
+
 const app = express();
 const port = 3001 || process.env.PORT;
 
@@ -21,7 +25,19 @@ app.post('/generate-pdf', async (req, res) => {
   const { htmlContent } = req.body;
 
   try {
-    const browser = await launch({ headless: 'new' });
+    const browser = await launch({
+      headless: 'new', args: [
+        "--disable-setuid-sandbox",
+        "--no-sandbox",
+        "--single-process",
+        "--no-zygote",
+      ],
+      executablePath:
+        process.env.NODE_ENV === "production"
+          ? process.env.PUPPETEER_EXECUTABLE_PATH
+          : puppeteer.executablePath(),
+    });
+
     const page = await browser.newPage();
 
     await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
