@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-import { launch } from 'puppeteer';
+import puppeteer, { launch } from 'puppeteer';
 import cors from 'cors';
 import { config } from 'dotenv';
 
@@ -36,7 +36,7 @@ app.post('/generate-pdf', async (req, res) => {
       executablePath:
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : require('puppeteer').executablePath(),
+          : puppeteer.executablePath(),
     });
 
     const page = await browser.newPage();
