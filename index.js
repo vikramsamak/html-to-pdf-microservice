@@ -26,7 +26,8 @@ app.post('/generate-pdf', async (req, res) => {
 
   try {
     const browser = await launch({
-      headless: 'new', args: [
+      headless: 'new', 
+      args: [
         "--disable-setuid-sandbox",
         "--no-sandbox",
         "--single-process",
@@ -35,7 +36,7 @@ app.post('/generate-pdf', async (req, res) => {
       executablePath:
         process.env.NODE_ENV === "production"
           ? process.env.PUPPETEER_EXECUTABLE_PATH
-          : puppeteer.executablePath(),
+          : require('puppeteer').executablePath(),
     });
 
     const page = await browser.newPage();
