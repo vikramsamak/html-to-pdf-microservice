@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "api": "node index.js",
+    "postinstall": "npx puppeteer browsers install chrome",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
