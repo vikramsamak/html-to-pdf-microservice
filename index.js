@@ -41,6 +41,8 @@ app.post('/generate-pdf', async (req, res) => {
 
     const page = await browser.newPage();
 
+    await page.goto('about:blank');
+
     await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'A4' });
 
