@@ -40,7 +40,7 @@ import { promises as fsPromises } from 'fs';
 
 async function getPDF() {
     try {
-        const response = await fetch('http://localhost:3001/generate-pdf', {
+        const response = await fetch('https://html-to-pdf-microservice.onrender.com/convert', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ async function getPDF() {
         })
         const pdfData = await response.json()
         try {
-            const pdfDataURI = pdfData.dataUri;
+            const pdfDataURI = pdfData;
             const base64String = pdfDataURI.split(',')[1]
             await fsPromises.writeFile('output.pdf', base64String, 'base64');
         } catch (error) {
