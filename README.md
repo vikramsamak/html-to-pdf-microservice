@@ -73,6 +73,3 @@ Puppeteer: Headless Chrome Node API for PDF generation
 ### Contributing
 
 Feel free to contribute by opening issues or pull requests.
-
-### Note 
-As of now this microservice is in development stage.(So works only on localhost.)
