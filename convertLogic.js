@@ -18,12 +18,10 @@ const convertLogic = async (htmlContent, res) => {
     const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
 
-    await page.setContent(htmlContent, { waitUntil: 'load' });
+    await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
     const pdfBuffer = await page.pdf({ format: 'A4' });
 
     const pdfBase64 = pdfBuffer.toString('base64');
-
-    await browser.close();
 
     const pdfData = {
       dataUri: `data:application/pdf;base64,${pdfBase64}`
