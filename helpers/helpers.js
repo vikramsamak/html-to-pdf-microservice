@@ -7,7 +7,6 @@ const createLoggerData = (req) => {
             JSON.stringify(req.params),
             JSON.stringify(req.query),
             JSON.stringify(req.headers),
-            JSON.stringify(req.body),
             req.ip,
             req.hostname,
             req.protocol,
