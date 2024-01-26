@@ -29,7 +29,7 @@ A simple microservice that converts HTML content to PDF using Puppeteer.
 ### Usage
 
 ```bash
-    npm run api
+    npm run dev
 ```
 
 ### Example
