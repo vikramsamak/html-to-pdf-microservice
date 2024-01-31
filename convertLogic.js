@@ -19,9 +19,9 @@ const convertLogic = async (htmlContent) => {
 
     const page = await browser.newPage();
 
-    await page.setContent(htmlContent, { waitUntil: 'domcontentloaded' });
+    await page.setContent(htmlContent, { waitUntil: 'networkidle2' });
 
-    const pdfBuffer = await page.pdf({ format: 'A4' });
+    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true, preferCSSPageSize: true });
 
     const pdfBase64 = pdfBuffer.toString('base64');
 
