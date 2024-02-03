@@ -7,6 +7,7 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 RUN npm ci
+RUN mkdir -p uploads
 COPY . .
 CMD [ "node", "index.js" ]
 
