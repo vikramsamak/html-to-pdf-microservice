@@ -32,37 +32,15 @@ A simple microservice that converts HTML content to PDF using Puppeteer.
     npm run dev
 ```
 
-### Example
+### Examples
 
-```javascript
-import { testhtml } from "./htmlContent.js"; //html code stored in another js file as string
-import { promises as fsPromises } from 'fs';
+The `examples` folder contains illustrative code snippets or projects to demonstrate the usage of the main codebase.
 
-async function getPDF() {
-    try {
-        const response = await fetch('https://html-to-pdf-microservice.onrender.com/convert', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ htmlContent: testhtml })
-        })
-        const pdfData = await response.json()
-        try {
-            const pdfDataURI = pdfData;
-            const base64String = pdfDataURI.split(',')[1]
-            await fsPromises.writeFile('output.pdf', base64String, 'base64');
-        } catch (error) {
-            console.log(error)
-        }
-    }
-    catch (error) {
-        console.log(error)
-    }
+- [Converting HTML Code into pdf](./examples/fromCode.js): Illustrates how to convert HTML code to a PDF file using the microservice. This example demonstrates the usage of the /convert-from-code endpoint.
 
-}
-getPDF();
-```
+- [Converting HTML File into pdf](./examples/fromFile.js):Demonstrates the process of converting an HTML file to a PDF using the microservice. This example showcases the usage of the /convert-from-file endpoint with file upload.
+
+Feel free to explore these examples to better understand how to use the main functionalities provided by this project.
 
 ### Dependencies
 
